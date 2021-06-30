@@ -115,13 +115,6 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!-- 统一返回结果 -->
-        <dependency>
-            <groupId>com.atguigu</groupId>
-            <artifactId>common-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
     </dependencies>
 
 </project>
