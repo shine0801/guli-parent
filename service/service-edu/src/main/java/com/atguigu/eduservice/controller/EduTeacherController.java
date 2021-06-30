@@ -124,13 +124,6 @@ public class EduTeacherController {
     public R selectTeacherById(
             @ApiParam(name = "id", value = "教师id", required = true)
             @PathVariable String id){
-
-        try {
-            int x = 10 / 0;
-        }catch (Exception e){
-            throw new GuliException(20001, "出现自定义异常");
-        }
-
         EduTeacher teacher = teacherService.getById(id);
         return R.ok().data("teacher", teacher);
     }
