@@ -29,6 +29,7 @@ import java.util.List;
 @Api("讲师管理")
 @RestController
 @RequestMapping("/eduservice/teacher")
+@CrossOrigin //解决跨域问题
 public class EduTeacherController {
 
     //注入service
@@ -130,14 +131,10 @@ public class EduTeacherController {
     
     //根据id进行修改
     @ApiOperation(value="根据id修改讲师")
-    @PostMapping("updateTeacherById/{id}")
+    @PostMapping("updateTeacherById")
     public R updateTeacherById(
-            @ApiParam(name = "id", value = "教师id", required = true)
-            @PathVariable String id,
             @ApiParam(name = "eduTeacher", value = "教师对象", required = true)
             @RequestBody EduTeacher eduTeacher){
-
-        eduTeacher.setId(id);
         boolean f= teacherService.updateById(eduTeacher);
         return f ? R.ok():R.error();
     }
