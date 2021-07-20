@@ -2,7 +2,9 @@ package com.atguigu.eduservice.controller;
 
 
 import com.atguigu.commonutils.R;
+import com.atguigu.commonutils.ordervo.CourseWebOrderVo;
 import com.atguigu.eduservice.entity.EduCourse;
+import com.atguigu.eduservice.entity.frontvo.CourseWebVo;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseQuery;
@@ -11,6 +13,7 @@ import com.atguigu.eduservice.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -127,8 +130,17 @@ public class EduCourseController {
     }
 
 
+    /**
+     *根据课程id查询课程确认信息（远程调用）
+     */
+    @GetMapping("getCourseInfoOrder/{id}")
+    public CourseWebOrderVo getCourseInfoOrder(@PathVariable String id){
+        CourseWebVo courseWebVo = eduCourseService.getBaseCourseInfo(id);
 
-
+        CourseWebOrderVo courseWebOrderVo = new CourseWebOrderVo();
+        BeanUtils.copyProperties(courseWebVo,courseWebOrderVo);
+        return courseWebOrderVo;
+    }
 
 
 }
